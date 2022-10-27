@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
@@ -7,7 +8,7 @@ const Login = () => {
     const { signIn, setLoading, providerLogin} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
-
+    const provider = new GoogleAuthProvider();
     const from = location.state?.from?.pathname || '/';
     const handleSubmit = event => {
         event.preventDefault();
@@ -37,6 +38,13 @@ const Login = () => {
             .finally(() => {
                 setLoading(false);
             })
+    }
+    const googleSign =()=>{
+        providerLogin(provider)
+        .then(result=>{
+            const user= result.user;
+            console.log(user);
+        })
     }
     return (
         <div className="bg-gray-200 w-10/12 min-h-screen flex flex-col">
@@ -77,10 +85,10 @@ const Login = () => {
                 <div className="text-indigo-500 mt-6">
                     Do not  have an account?
                     <Link className="no-underline border-b border-blue text-blue" to='/register'> Register</Link>
-                    <button onClick={providerLogin}>Google sign in</button>
+                   
                 </div>
                 <p className='text-red-600 text-lg'>{error}</p>
-                <button onClick={providerLogin}>Google sign in</button>
+                <button className='bg-indigo-600 px-3 py-1 text-gray-300' onClick={googleSign}><i class="ri-google-line"></i> Google sign in</button>
             </form>
         </div>
     );

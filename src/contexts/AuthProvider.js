@@ -9,16 +9,13 @@ const auth = getAuth(app)
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const provider = new GoogleAuthProvider();
+
 
 //google sighn in
     const providerLogin = (provider) => {
         setLoading(true);
-        signInWithPopup(auth, provider)
-        .then(result=>{
-            const user = result.user;
-            console.log(user);
-        })
+      return  signInWithPopup(auth, provider)
+        
     }
 //register
     const createUser = (email, password) => {
