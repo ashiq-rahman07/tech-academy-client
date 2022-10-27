@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
-    // const [error, setError] = useState('');
-    const { signIn, setLoading } = useContext(AuthContext);
-    // const navigate = useNavigate();
-    // const location = useLocation();
+    const [error, setError] = useState('');
+    const { signIn, setLoading, providerLogin} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    // const from = location.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || '/';
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;
@@ -21,7 +21,8 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-                // setError('');
+                setError('');
+                navigate(from, { replace: true });
                 // if (user.emailVerified) {
                 //     navigate(from, { replace: true });
                 // }
@@ -31,11 +32,11 @@ const Login = () => {
             })
             .catch(error => {
                 console.error(error)
-                // setError(error.message);
+                setError(error.message);
             })
-            // .finally(() => {
-            //     setLoading(false);
-            // })
+            .finally(() => {
+                setLoading(false);
+            })
     }
     return (
         <div className="bg-gray-200 w-10/12 min-h-screen flex flex-col">
@@ -76,8 +77,10 @@ const Login = () => {
                 <div className="text-indigo-500 mt-6">
                     Do not  have an account?
                     <Link className="no-underline border-b border-blue text-blue" to='/register'> Register</Link>
-
+                    <button onClick={providerLogin}>Google sign in</button>
                 </div>
+                <p className='text-red-600 text-lg'>{error}</p>
+                <button onClick={providerLogin}>Google sign in</button>
             </form>
         </div>
     );
