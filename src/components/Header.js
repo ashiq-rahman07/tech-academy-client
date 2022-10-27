@@ -42,12 +42,12 @@ const Header = () => {
                                 user?.uid ?
                                     <>
                                         <span>{user?.displayName}</span>
-                                        <button className='mr-4 ml-3 bg-indigo-800' onClick={handleLogOut}>Log out</button>
+                                        <button className='mr-4 ml-3 bg-indigo-800 text-gray-200 font-medium py-1 px-1 rounded-md hover:scale-150 duration-200' onClick={handleLogOut}>Log out</button>
                                     </>
                                     :
                                     <>
-                                        <Link to='/login'>Login</Link>
-                                        <Link to='/register'>Register</Link>
+                                    <Link className='mr-4 ml-3 bg-indigo-800 text-gray-200 font-medium py-1 px-1 rounded-md hover:scale-150 duration-200' to='/login'>Login</Link>
+                                    <Link className='mr-4 ml-1 bg-indigo-800 text-gray-200 font-medium py-1 px-1 rounded-md hover:scale-150 duration-200' to='/register'>Register</Link>
                                     </>
                     }
                    
@@ -57,7 +57,7 @@ const Header = () => {
                         <img className='w-10 rounded-full'   src={user?.photoURL} alt="" />
                            
                             
-                            :<p>user</p>
+                            : <i className="ri-shield-user-fill text-3xl"></i>
                             // : <FaUser></FaUser>
                         }
                     </Link>
