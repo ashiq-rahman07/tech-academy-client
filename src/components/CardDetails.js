@@ -13,7 +13,7 @@ const CardDetails = () => {
                     <div>
                         <h1 className="text-3xl font-bold">{title}</h1>
                         <p className="py-6">{description}</p>
-                        <button className="btn btn-primary">Get Started</button>
+                        <button className="btn btn-primary">Get Premium Access</button>
                     </div>
                 </div>
             </div>

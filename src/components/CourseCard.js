@@ -9,8 +9,8 @@ const CourseCard = ({ course }) => {
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <p>{title}</p>
-                <div className="card-actions justify-end">
-                    <Link to={`/course-details/${_id}`}><button className="btn btn-primary">Buy Now</button></Link>
+                <div className="card-actions justify-end mt-5">
+                    <Link to={`/course-details/${_id}`}><button className="btn btn-primary">Get This Courese</button></Link>
 
                 </div>
             </div>
