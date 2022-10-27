@@ -42,7 +42,7 @@ const Header = () => {
                                 user?.uid ?
                                     <>
                                         <span>{user?.displayName}</span>
-                                        <button className='mr-4 ml-3' onClick={handleLogOut}>Log out</button>
+                                        <button className='mr-4 ml-3 bg-indigo-800' onClick={handleLogOut}>Log out</button>
                                     </>
                                     :
                                     <>
